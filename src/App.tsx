@@ -7,7 +7,6 @@ export const App = () => {
   const { state } = useBudget();
 
   const isValidBudget = state.budget > 0
-  console.log(isValidBudget)
 
   return (
     <>
