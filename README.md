@@ -1,73 +1,42 @@
-# React + TypeScript + Vite
+# Planificador de Gastos
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+![Captura de la aplicación](url-de-captura.png)
 
-Currently, two official plugins are available:
+Aplicación para gestionar presupuestos y gastos personales construida con React y TypeScript.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Características
 
-## React Compiler
+- **Gestión de presupuesto**: Define un presupuesto inicial y realiza un seguimiento.
+- **CRUD de gastos**: Agrega, edita y elimina gastos con nombre, cantidad, categoría y fecha.
+- **Persistencia local**: Los datos se guardan automáticamente en localStorage.
+- **Filtro por categoría**: Filtra los gastos por categoría para una mejor visualización.
+- **Gráfico circular**: Visualiza el porcentaje de gasto con una barra de progreso circular.
+- **Swipe gestures**: Desliza para editar o eliminar gastos en dispositivos táctiles.
+- **Modal de confirmación**: Confirmación antes de resetear la aplicación.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Tecnologías
 
-## Expanding the ESLint configuration
+- React 19
+- TypeScript
+- Tailwind CSS v4
+- Headless UI
+- Vite
+- react-circular-progressbar
+- react-date-picker
+- react-swipeable-list
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## Instalación
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+npm install
+npm run dev
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## Scripts
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+| Comando | Descripción |
+|---|---|
+| `npm run dev` | Inicia el servidor de desarrollo |
+| `npm run build` | Compila el proyecto para producción |
+| `npm run preview` | Previsualiza la build de producción |
+| `npm run lint` | Ejecuta el linter |
