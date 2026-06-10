@@ -2,6 +2,7 @@ import { CircularProgressbar, buildStyles } from "react-circular-progressbar"
 import "react-circular-progressbar/dist/styles.css"
 import { AmountDisplay } from "./AmountDisplay"
 import { useBudget } from "../hooks/useBudget"
+import { ConfirmModal } from "./ConfirmModal"
 
 export const BudgetTracker = () => {
     const { state, remainingBudget, totalExpenses, dispatch } = useBudget()
@@ -26,7 +27,7 @@ export const BudgetTracker = () => {
                 <button
                     type="button"
                     className="bg-pink-600 w-full p-2 text-white uppercase font-bold rounded-lg"
-                    onClick={() => dispatch({ type: 'reset-app' })}
+                    onClick={() => dispatch({ type: 'show-reset-confirm' })}
                 >
                     Resetear App
                 </button>
@@ -43,6 +44,13 @@ export const BudgetTracker = () => {
                     amount={totalExpenses}
                 />
             </div>
+            <ConfirmModal
+                show={state.confirmReset}
+                onClose={() => dispatch({ type: 'hide-reset-confirm' })}
+                onConfirm={() => dispatch({ type: 'reset-app' })}
+                title="Resetear Aplicación"
+                message="¿Estás seguro de eliminar todos los gastos y presupuesto? Esta acción no se puede deshacer."
+            />
         </div>
     )
 }
