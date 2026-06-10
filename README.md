@@ -1,8 +1,7 @@
 # Planificador de Gastos
 
-![Captura de la aplicación](url-de-captura.png)
-
 Aplicación para gestionar presupuestos y gastos personales construida con React y TypeScript.
+<img width="1920" height="1800" alt="screencapture-localhost-5173-expense-tracker-2026-06-10-04_08_20" src="https://github.com/user-attachments/assets/e9e8610b-112b-4dea-8d7c-31d50d772b31" />
 
 ## Características
 
