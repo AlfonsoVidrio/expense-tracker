@@ -4,6 +4,7 @@ import { BudgetTracker } from "./components/BudgetTracker";
 import { ExpenseList } from "./components/ExpenseList";
 import { ExpenseModal } from "./components/ExpenseModal";
 import { useBudget } from "./hooks/useBudget"
+import { FilterByCategory } from "./components/FilterByCategory";
 
 export const App = () => {
   const { state } = useBudget();
@@ -24,15 +25,18 @@ export const App = () => {
       </header>
 
       <div className="max-w-3xl mx-auto bg-white shadow-lg rounded-lg mt-10 p-10">
-        {
-          isValidBudget ? <BudgetTracker /> : <BudgetForm />
-        }
+        <div className="animate-fadeIn" key={isValidBudget ? 'tracker' : 'form'}>
+          {isValidBudget ? <BudgetTracker /> : <BudgetForm />}
+        </div>
       </div>
       {isValidBudget && (
-        <main className="max-w-3xl mx-auto py-10">
-          <ExpenseList />
-          <ExpenseModal />
-        </main>
+        <div className="animate-fadeIn" key="main-content">
+          <main className="max-w-3xl mx-auto py-10">
+            <FilterByCategory />
+            <ExpenseList />
+            <ExpenseModal />
+          </main>
+        </div>
       )}
     </>
   )

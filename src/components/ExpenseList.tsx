@@ -4,14 +4,16 @@ import { ExpenseDetails } from "./ExpenseDetails";
 export const ExpenseList = () => {
     const { state } = useBudget();
 
-    const isEmpty = state.expenses.length === 0
 
+    const filteredExpenses = state.curretnCategory ? state.expenses.filter( expense => expense.category === state.curretnCategory) : state.expenses
+    
+    const isEmpty = filteredExpenses.length === 0
     return (
-        <div className="mt-10">
+        <div className="mt-10 bg-white shadow-lg rounded-lg p-10">
             {isEmpty ? <p className="text-gray-600 text-2xl font-bold">No Hay Gastos</p> : (
                 <>
                     <p className="text-gray-600 text-2xl font-bold my-5">Listado de Gastos.</p>
-                    {state.expenses.map((expense) => (
+                    {filteredExpenses.map((expense) => (
                         <ExpenseDetails
                             key={expense.id}
                             expense={expense}
