@@ -1,5 +1,5 @@
 import { v4 as uuidv4 } from 'uuid'
-import type { DraftExpense, Expense } from "../types"
+import type { Category, DraftExpense, Expense } from "../types"
 
 export type BudgetActions =
     { type: 'add-budget', payload: { budget: number } } |
@@ -9,13 +9,18 @@ export type BudgetActions =
     { type: 'remove-expense', payload: { id: Expense['id'] } } |
     { type: 'get-expense-by-id', payload: { id: Expense['id'] } } |
     { type: 'update-expense', payload: { expense: Expense } } |
-    { type: 'reset-app' }
+    { type: 'reset-app' } |
+    { type: 'show-reset-confirm' } |
+    { type: 'hide-reset-confirm' } |
+    { type: 'add-filter-by-category', payload: { id: Category['id'] } }
 
 export type BudgetState = {
     budget: number
     modal: boolean
     expenses: Expense[]
     editingId: Expense['id']
+    curretnCategory: Category['id']
+    confirmReset: boolean
 }
 
 const initialBudget = (): number => {
@@ -32,7 +37,9 @@ export const initialState: BudgetState = {
     budget: initialBudget(),
     modal: false,
     expenses: localStorageExpenses(),
-    editingId: ''
+    editingId: '',
+    curretnCategory: '',
+    confirmReset: false
 }
 
 const createExpense = (draftExpense: DraftExpense): Expense => {
@@ -92,14 +99,33 @@ export const budgetReducer = (state: BudgetState = initialState, action: BudgetA
                 editingId: ''
             }
         }
+        case 'show-reset-confirm': {
+            return {
+                ...state,
+                confirmReset: true
+            }
+        }
+        case 'hide-reset-confirm': {
+            return {
+                ...state,
+                confirmReset: false
+            }
+        }
         case 'reset-app': {
             return {
                 ...state,
                 budget: 0,
                 expenses: [],
+                curretnCategory: '',
+                confirmReset: false
             }
         }
-
+        case 'add-filter-by-category': {
+            return {
+                ...state,
+                curretnCategory: action.payload.id
+            }
+        }
         default: {
             return state
         }
