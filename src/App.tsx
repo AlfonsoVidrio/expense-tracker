@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { BudgetForm } from "./components/BudgetForm"
 import { BudgetTracker } from "./components/BudgetTracker";
 import { ExpenseList } from "./components/ExpenseList";
@@ -8,6 +9,11 @@ export const App = () => {
   const { state } = useBudget();
 
   const isValidBudget = state.budget > 0
+
+  useEffect(() => {
+    localStorage.setItem("budget", state.budget.toString())
+    localStorage.setItem("expenses", JSON.stringify(state.expenses))
+  }, [state])
 
   return (
     <>
